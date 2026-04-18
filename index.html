@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SRT 中繼伺服器使用教學</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Microsoft JhengHei', 'Noto Sans TC', sans-serif;
+    background: #0f1117;
+    color: #e0e0e0;
+    line-height: 1.7;
+    padding: 20px;
+  }
+  .container {
+    max-width: 860px;
+    margin: 0 auto;
+  }
+  header {
+    text-align: center;
+    padding: 48px 0 32px;
+    border-bottom: 1px solid #2a2d3a;
+    margin-bottom: 40px;
+  }
+  header h1 {
+    font-size: 2rem;
+    color: #fff;
+    margin-bottom: 10px;
+  }
+  header p {
+    color: #8b8fa8;
+    font-size: 1rem;
+  }
+
+  /* 流程圖 */
+  .flow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin: 32px 0;
+    padding: 24px;
+    background: #1a1d27;
+    border-radius: 12px;
+    border: 1px solid #2a2d3a;
+  }
+  .flow-box {
+    background: #23263a;
+    border: 1px solid #3a3f5c;
+    border-radius: 8px;
+    padding: 10px 16px;
+    text-align: center;
+    font-size: 0.9rem;
+  }
+  .flow-box .icon { font-size: 1.4rem; display: block; margin-bottom: 4px; }
+  .flow-box .name { color: #fff; font-weight: bold; }
+  .flow-box .sub { color: #8b8fa8; font-size: 0.78rem; }
+  .flow-arrow {
+    color: #5b6cf8;
+    font-size: 1.4rem;
+    font-weight: bold;
+  }
+  .flow-box.highlight {
+    border-color: #5b6cf8;
+    background: #1e2240;
+  }
+
+  /* 區塊標題 */
+  .section {
+    margin-bottom: 40px;
+  }
+  .section-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #fff;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #5b6cf8;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .step-num {
+    background: #5b6cf8;
+    color: #fff;
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+    flex-shrink: 0;
+  }
+
+  /* 步驟卡片 */
+  .steps { display: flex; flex-direction: column; gap: 12px; }
+  .step {
+    background: #1a1d27;
+    border: 1px solid #2a2d3a;
+    border-radius: 10px;
+    padding: 16px 20px;
+  }
+  .step h3 {
+    color: #a0aaff;
+    font-size: 0.95rem;
+    margin-bottom: 8px;
+  }
+  .step p { color: #c0c4d8; font-size: 0.92rem; }
+
+  /* 程式碼區塊 */
+  .code-block {
+    background: #0d0f18;
+    border: 1px solid #2a2d3a;
+    border-radius: 8px;
+    padding: 14px 18px;
+    font-family: 'Consolas', 'Courier New', monospace;
+    font-size: 0.9rem;
+    color: #7dd3fc;
+    margin: 8px 0;
+    word-break: break-all;
+    position: relative;
+  }
+  .code-label {
+    font-size: 0.75rem;
+    color: #5b6cf8;
+    margin-bottom: 4px;
+    font-family: sans-serif;
+  }
+
+  /* 提示框 */
+  .tip {
+    background: #1a2035;
+    border-left: 4px solid #5b6cf8;
+    border-radius: 0 8px 8px 0;
+    padding: 12px 16px;
+    margin: 12px 0;
+    font-size: 0.9rem;
+    color: #a0b0d0;
+  }
+  .tip strong { color: #fff; }
+  .warn {
+    background: #1f1a10;
+    border-left: 4px solid #f59e0b;
+    border-radius: 0 8px 8px 0;
+    padding: 12px 16px;
+    margin: 12px 0;
+    font-size: 0.9rem;
+    color: #d0b880;
+  }
+  .warn strong { color: #fbbf24; }
+
+  /* 表格 */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 12px 0;
+    font-size: 0.9rem;
+  }
+  th {
+    background: #23263a;
+    color: #a0aaff;
+    padding: 10px 14px;
+    text-align: left;
+    border-bottom: 1px solid #3a3f5c;
+  }
+  td {
+    padding: 10px 14px;
+    border-bottom: 1px solid #1e2130;
+    color: #c0c4d8;
+    vertical-align: top;
+  }
+  tr:last-child td { border-bottom: none; }
+  td code {
+    background: #0d0f18;
+    padding: 2px 6px;
+    border-radius: 4px;
+    color: #7dd3fc;
+    font-size: 0.85rem;
+  }
+
+  /* 場景狀態圖 */
+  .scenes {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin: 12px 0;
+  }
+  .scene-card {
+    flex: 1;
+    min-width: 160px;
+    background: #1a1d27;
+    border-radius: 10px;
+    padding: 14px;
+    text-align: center;
+    border: 1px solid #2a2d3a;
+  }
+  .scene-card .dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    margin: 0 auto 8px;
+  }
+  .scene-card.good .dot { background: #00ff88; box-shadow: 0 0 8px #00ff88; }
+  .scene-card.low .dot { background: #ffaa00; box-shadow: 0 0 8px #ffaa00; }
+  .scene-card.bad .dot { background: #ff3333; box-shadow: 0 0 8px #ff3333; }
+  .scene-card .scene-name { color: #fff; font-weight: bold; font-size: 1rem; }
+  .scene-card .scene-desc { color: #8b8fa8; font-size: 0.8rem; margin-top: 4px; }
+
+  footer {
+    text-align: center;
+    color: #3a3f5c;
+    font-size: 0.82rem;
+    padding: 32px 0;
+    border-top: 1px solid #2a2d3a;
+    margin-top: 48px;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<header>
+  <h1>📡 SRT 中繼伺服器使用教學</h1>
+  <p>給借用伺服器台主的完整設定指南（新手適用）</p>
+</header>
+
+<!-- 架構流程圖 -->
+<div class="section">
+  <div class="section-title">整體架構</div>
+  <div class="flow">
+    <div class="flow-box">
+      <span class="icon">📱</span>
+      <span class="name">你的手機</span>
+      <span class="sub">IRL Pro</span>
+    </div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-box highlight">
+      <span class="icon">🖥️</span>
+      <span class="name">中繼伺服器</span>
+      <span class="sub">flycat.ddns.net</span>
+    </div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-box">
+      <span class="icon">🎬</span>
+      <span class="name">你的 OBS</span>
+      <span class="sub">拉流 + 推 Twitch</span>
+    </div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-box">
+      <span class="icon">🟣</span>
+      <span class="name">Twitch</span>
+      <span class="sub">你的頻道</span>
+    </div>
+  </div>
+  <div class="tip">
+    <strong>白話說：</strong>手機畫面先傳到中繼伺服器存著，你的電腦 OBS 再從伺服器抓畫面，然後推到 Twitch。這樣手機訊號不穩也不會直接閃退直播。
+  </div>
+</div>
+
+<!-- 你的串流資訊 -->
+<div class="section">
+  <div class="section-title"><span class="step-num">1</span> 你的串流資訊</div>
+  <div class="tip">以下資訊由伺服器管理員提供，每位台主不同，請勿分享給他人。</div>
+  <table>
+    <tr><th>項目</th><th>你的設定值</th></tr>
+    <tr><td>推流網址</td><td><code>srt://flycat.ddns.net:5002</code></td></tr>
+    <tr><td>Stream ID（推流用）</td><td><code>publish:你的名字</code></td></tr>
+    <tr><td>OBS 拉流網址</td><td><code>srt://flycat.ddns.net:5002?streamid=read:你的名字</code></td></tr>
+    <tr><td>NOALBS 監測網址</td><td><code>http://flycat.ddns.net:9997/v3/paths/get/你的名字</code></td></tr>
+  </table>
+  <div class="warn"><strong>注意：</strong>「你的名字」由管理員指定，請直接替換整個詞，例如 <code>publish:kevin</code></div>
+</div>
+
+<!-- IRL Pro 設定 -->
+<div class="section">
+  <div class="section-title"><span class="step-num">2</span> 手機 IRL Pro 設定</div>
+  <div class="steps">
+    <div class="step">
+      <h3>下載 IRL Pro</h3>
+      <p>Android 手機到 Google Play 搜尋「IRL Pro」安裝（免費）。</p>
+    </div>
+    <div class="step">
+      <h3>新增串流設定</h3>
+      <p>打開 IRL Pro → 右上角齒輪 → Stream → 加號新增 → 選擇 <strong>SRT</strong></p>
+    </div>
+    <div class="step">
+      <h3>填入以下資料</h3>
+      <div class="code-label">Host（主機位址）</div>
+      <div class="code-block">flycat.ddns.net</div>
+      <div class="code-label">Port（連接埠）</div>
+      <div class="code-block">5002</div>
+      <div class="code-label">Stream ID</div>
+      <div class="code-block">publish:你的名字</div>
+    </div>
+    <div class="step">
+      <h3>建議畫質設定</h3>
+      <table>
+        <tr><th>項目</th><th>建議值</th></tr>
+        <tr><td>解析度</td><td>1080p 或 720p</td></tr>
+        <tr><td>Bitrate</td><td>3000–5000 kbps（看網路狀況）</td></tr>
+        <tr><td>關鍵影格間隔</td><td>2 秒</td></tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- OBS 設定 -->
+<div class="section">
+  <div class="section-title"><span class="step-num">3</span> OBS 設定</div>
+  <div class="steps">
+    <div class="step">
+      <h3>新增媒體來源（拉流）</h3>
+      <p>OBS → 來源 → 加號 → <strong>媒體來源</strong> → 取消勾選「本機檔案」</p>
+      <div class="code-label">輸入以下網址</div>
+      <div class="code-block">srt://flycat.ddns.net:5002?streamid=read:你的名字</div>
+      <p style="margin-top:8px;">勾選「重新連接時循環」，其他保持預設。</p>
+    </div>
+    <div class="step">
+      <h3>設定推流到你的 Twitch</h3>
+      <p>OBS → 設定 → 串流 → 選擇 <strong>Twitch</strong> → 連結帳號或手動貼上串流金鑰。</p>
+    </div>
+    <div class="step">
+      <h3>建立三個場景</h3>
+      <div class="scenes">
+        <div class="scene-card good">
+          <div class="dot"></div>
+          <div class="scene-name">IRL</div>
+          <div class="scene-desc">正常直播畫面<br>媒體來源放這裡</div>
+        </div>
+        <div class="scene-card low">
+          <div class="dot"></div>
+          <div class="scene-name">lowB</div>
+          <div class="scene-desc">訊號差時自動切換<br>可放等待圖片</div>
+        </div>
+        <div class="scene-card bad">
+          <div class="dot"></div>
+          <div class="scene-name">BRB</div>
+          <div class="scene-desc">斷線時自動切換<br>離開畫面用</div>
+        </div>
+      </div>
+      <div class="tip"><strong>場景名稱要一模一樣</strong>，NOALBS 才認得到。</div>
+    </div>
+  </div>
+</div>
+
+<!-- NOALBS 設定 -->
+<div class="section">
+  <div class="section-title"><span class="step-num">4</span> NOALBS 設定（自動場景切換）</div>
+  <div class="steps">
+    <div class="step">
+      <h3>下載 NOALBS</h3>
+      <p>前往 <strong>https://github.com/NOALBS/nginx-obs-automatic-low-bitrate-switching/releases</strong><br>
+      下載 <code>noalbs-v2.x.x-x86_64-pc-windows-msvc.zip</code>，解壓縮到任意資料夾。</p>
+    </div>
+    <div class="step">
+      <h3>建立 .env 檔案</h3>
+      <p>在 NOALBS 資料夾裡新增一個檔案，命名為 <code>.env</code>（注意前面有點），填入：</p>
+      <div class="code-block">TWITCH_BOT_USERNAME=你的BOT帳號<br>TWITCH_BOT_OAUTH=oauth:你的token</div>
+      <div class="tip"><strong>沒有 BOT 帳號？</strong>用自己的 Twitch 帳號也可以，OAUTH 到 <strong>https://twitchapps.com/tmi/</strong> 取得。</div>
+    </div>
+    <div class="step">
+      <h3>建立 config.json 設定檔</h3>
+      <p>在同一個資料夾建立 <code>config.json</code>，貼上以下內容，並把 <strong>三個地方</strong> 換成你的資料：</p>
+      <div class="code-block">{
+  "user": {
+    "id": null,
+    "name": "<span style="color:#fbbf24">你的Twitch頻道名稱</span>",
+    "passwordHash": null
+  },
+  "switcher": {
+    "bitrateSwitcherEnabled": true,
+    "onlySwitchWhenStreaming": true,
+    "instantlySwitchOnRecover": true,
+    "autoSwitchNotification": true,
+    "retryAttempts": 5,
+    "triggers": {
+      "low": 800,
+      "rtt": 2500,
+      "offline": 100
+    },
+    "switchingScenes": {
+      "normal": "IRL",
+      "low": "lowB",
+      "offline": "BRB"
+    },
+    "streamServers": [
+      {
+        "streamServer": {
+          "type": "Mediamtx",
+          "statsUrl": "http://flycat.ddns.net:9997/v3/paths/get/<span style="color:#fbbf24">你的名字</span>"
+        },
+        "name": "MediaMTX",
+        "priority": 1,
+        "overrideScenes": null,
+        "dependsOn": null,
+        "enabled": true
+      }
+    ]
+  },
+  "software": {
+    "type": "Obs",
+    "host": "localhost",
+    "password": "<span style="color:#fbbf24">你的OBS WebSocket密碼</span>",
+    "port": 4455
+  },
+  "chat": {
+    "platform": "Twitch",
+    "username": "你的BOT帳號",
+    "admins": ["你的Twitch頻道名稱"],
+    "ignoreUsers": [],
+    "language": "EN",
+    "prefix": "!",
+    "enablePublicCommands": false,
+    "enableModCommands": true,
+    "enableAutoStopStreamOnHostOrRaid": false,
+    "announceRaidOnAutoStop": false,
+    "commands": {
+      "Fix": { "permission": "Mod", "userPermissions": null, "alias": ["f"] },
+      "Switch": { "permission": "Mod", "userPermissions": null, "alias": ["ss"] },
+      "Bitrate": { "permission": null, "userPermissions": null, "alias": ["b"] },
+      "Start": { "permission": "Mod", "userPermissions": null, "alias": ["start"] },
+      "Stop": { "permission": "Mod", "userPermissions": null, "alias": ["stop"] }
+    }
+  },
+  "optionalScenes": { "starting": null, "ending": null, "privacy": null, "refresh": null },
+  "optionalOptions": {
+    "twitchTranscodingCheck": false,
+    "twitchTranscodingRetries": 5,
+    "twitchTranscodingDelaySeconds": 15,
+    "offlineTimeout": null,
+    "recordWhileStreaming": false,
+    "switchToStartingSceneOnStreamStart": false,
+    "switchFromStartingSceneToLiveScene": false
+  }
+}</div>
+    </div>
+    <div class="step">
+      <h3>開啟 OBS WebSocket</h3>
+      <p>OBS → 工具 → WebSocket 伺服器設定 → 啟用 → 設定密碼 → 確定。<br>
+      把密碼填到 config.json 的 <code>"password"</code> 欄位。</p>
+    </div>
+    <div class="step">
+      <h3>啟動 NOALBS</h3>
+      <p>執行 <code>noalbs.exe</code>，看到沒有錯誤訊息就代表成功連上。</p>
+    </div>
+  </div>
+</div>
+
+<!-- 聊天室指令 -->
+<div class="section">
+  <div class="section-title"><span class="step-num">5</span> 聊天室指令</div>
+  <table>
+    <tr><th>指令</th><th>功能</th><th>誰能用</th></tr>
+    <tr><td><code>!start</code></td><td>開始直播</td><td>台主 / 管理員</td></tr>
+    <tr><td><code>!stop</code></td><td>停止直播</td><td>台主 / 管理員</td></tr>
+    <tr><td><code>!ss IRL</code></td><td>手動切換到正常場景</td><td>台主 / 管理員</td></tr>
+    <tr><td><code>!ss BRB</code></td><td>手動切換到等待場景</td><td>台主 / 管理員</td></tr>
+    <tr><td><code>!b</code></td><td>查詢目前訊號強度</td><td>所有人</td></tr>
+  </table>
+</div>
+
+<!-- 直播前流程 -->
+<div class="section">
+  <div class="section-title"><span class="step-num">6</span> 每次直播前的流程</div>
+  <div class="steps">
+    <div class="step"><h3>① 開啟 OBS</h3><p>確認媒體來源已設好，三個場景都在。</p></div>
+    <div class="step"><h3>② 執行 noalbs.exe</h3><p>等它連上 OBS（顯示 Connected to OBS）。</p></div>
+    <div class="step"><h3>③ 手機開 IRL Pro 開始推流</h3><p>確認手機有網路，按下開始推流。</p></div>
+    <div class="step"><h3>④ 在聊天室打 !start</h3><p>NOALBS 收到指令後會自動開始直播。</p></div>
+  </div>
+</div>
+
+<!-- 自動切換說明 -->
+<div class="section">
+  <div class="section-title">自動場景切換邏輯</div>
+  <table>
+    <tr><th>狀況</th><th>切換到</th><th>觸發條件</th></tr>
+    <tr><td>訊號正常</td><td>IRL 場景</td><td>bitrate &gt; 800 kbps</td></tr>
+    <tr><td>訊號變差</td><td>lowB 場景</td><td>bitrate 介於 100–800 kbps</td></tr>
+    <tr><td>訊號斷線</td><td>BRB 場景</td><td>bitrate &lt; 100 kbps</td></tr>
+  </table>
+  <div class="tip">訊號恢復後會自動切回 IRL，不需要手動操作。</div>
+</div>
+
+<footer>
+  教學由伺服器管理員提供 · 有問題請聯繫管理員
+</footer>
+
+</div>
+</body>
+</html>
