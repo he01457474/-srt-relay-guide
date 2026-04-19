@@ -269,34 +269,53 @@
     <div class="step">
       <div class="step-header"><span class="mini-num">1</span><h3>安裝 App</h3></div>
       <p>Android 手機到 Google Play 搜尋「<strong>IRL Pro</strong>」安裝（免費）。</p>
+      <div class="tip" style="margin-top:10px;"><strong>iOS 沒有這個 App。</strong>iPhone 用戶請改用 <strong>Larix Broadcaster</strong>，設定方式類似。</div>
     </div>
     <div class="step">
-      <div class="step-header"><span class="mini-num">2</span><h3>新增推流設定</h3></div>
-      <p>打開 IRL Pro → 右上角齒輪圖示 → Stream → 右下角加號 → 選 <strong>SRT</strong></p>
+      <div class="step-header"><span class="mini-num">2</span><h3>進入設定頁面</h3></div>
+      <p>打開 IRL Pro，點右上角的 <strong>齒輪圖示（⚙）</strong> 進入設定。</p>
+      <p style="margin-top:8px;">找到 <strong>「Stream」</strong>（推流設定），點進去。</p>
     </div>
     <div class="step">
-      <div class="step-header"><span class="mini-num">3</span><h3>填入資料</h3></div>
-      <div class="field">
-        <div class="field-label">Host（伺服器位址）</div>
-        <div class="field-value">flycat.ddns.net</div>
-      </div>
-      <div class="field">
-        <div class="field-label">Port（連接埠）</div>
-        <div class="field-value">5002</div>
-      </div>
-      <div class="field">
-        <div class="field-label">Stream ID</div>
-        <div class="field-value">publish:<span class="highlight-text">你的 Twitch ID</span></div>
-      </div>
+      <div class="step-header"><span class="mini-num">3</span><h3>新增 SRT 推流</h3></div>
+      <p>進入 Stream 頁面後，點右下角的 <strong>「＋」</strong> 按鈕新增一組設定。</p>
+      <p style="margin-top:8px;">出現協定選擇時，選 <strong>「SRT」</strong>。</p>
     </div>
     <div class="step">
-      <div class="step-header"><span class="mini-num">4</span><h3>畫質建議</h3></div>
-      <table>
-        <tr><th>項目</th><th>建議設定</th></tr>
-        <tr><td>解析度</td><td>1080p（網路差可降 720p）</td></tr>
-        <tr><td>畫面品質（Bitrate）</td><td>3000～5000（數字越高畫質越好，但需要越穩的網路）</td></tr>
-        <tr><td>關鍵影格間隔</td><td>2</td></tr>
+      <div class="step-header"><span class="mini-num">4</span><h3>填入連線資料</h3></div>
+      <p>依序填入以下欄位：</p>
+      <table style="margin-top:10px;">
+        <tr><th>App 上的欄位名稱</th><th>填入的內容</th></tr>
+        <tr><td><strong>Name</strong>（設定名稱）</td><td>隨便取，例如 <code style="color:#7dd3fc">flycat</code></td></tr>
+        <tr><td><strong>Host</strong>（伺服器位址）</td><td><code style="color:#7dd3fc">flycat.ddns.net</code></td></tr>
+        <tr><td><strong>Port</strong>（連接埠）</td><td><code style="color:#7dd3fc">5002</code></td></tr>
+        <tr><td><strong>Stream ID</strong></td><td><code style="color:#fbbf24">publish:你的 Twitch ID</code></td></tr>
+        <tr><td><strong>Mode</strong></td><td>選 <strong>Caller</strong></td></tr>
+        <tr><td><strong>Latency</strong>（延遲）</td><td>120（保持預設即可）</td></tr>
       </table>
+      <div class="warn" style="margin-top:10px;"><strong>Stream ID 不要打錯！</strong>格式是 <code>publish:</code> 加你的 Twitch ID，例如 <code>publish:kevin</code>，全部小寫。</div>
+    </div>
+    <div class="step">
+      <div class="step-header"><span class="mini-num">5</span><h3>畫質設定</h3></div>
+      <p>同樣在 Stream 設定裡，找到畫質相關欄位：</p>
+      <table style="margin-top:10px;">
+        <tr><th>欄位名稱</th><th>建議設定</th><th>說明</th></tr>
+        <tr><td><strong>Resolution</strong>（解析度）</td><td>1920×1080</td><td>網路差可改 1280×720</td></tr>
+        <tr><td><strong>Bitrate</strong>（畫面品質）</td><td>3000～5000</td><td>數字越高越清晰，但也越耗網路</td></tr>
+        <tr><td><strong>Keyframe interval</strong>（關鍵影格）</td><td>2</td><td>固定填 2</td></tr>
+        <tr><td><strong>FPS</strong>（影格率）</td><td>30</td><td>60 fps 需更好的手機和網路</td></tr>
+      </table>
+    </div>
+    <div class="step">
+      <div class="step-header"><span class="mini-num">6</span><h3>儲存並選用這組設定</h3></div>
+      <p>填完後按右上角 <strong>「Save」</strong>（儲存）。</p>
+      <p style="margin-top:8px;">回到 Stream 清單，點你剛才新增的設定前面的 <strong>圓圈</strong>，讓它變成打勾狀態，代表選用這組設定。</p>
+    </div>
+    <div class="step">
+      <div class="step-header"><span class="mini-num">7</span><h3>開始推流</h3></div>
+      <p>回到主畫面，點畫面下方的 <strong>「Go Live」</strong> 按鈕開始推流。</p>
+      <p style="margin-top:8px;">畫面上出現 <strong style="color:#00ff88">綠色連線狀態</strong> 代表成功連到中繼站，可以繼續下一步了。</p>
+      <div class="tip" style="margin-top:8px;"><strong>看到 「Connecting...」一直轉？</strong>確認 Host 和 Port 有沒有打錯，或詢問管理員伺服器是否正常。</div>
     </div>
   </div>
 </div>
@@ -367,7 +386,7 @@
       <p>NOALBS 需要一個 Twitch 授權碼才能在聊天室發言。</p>
       <p style="margin-top:6px;">① 打開這個網址（<strong>建議用你的帳號登入 Twitch 後再開</strong>）：</p>
       <div class="field" style="margin-top:6px;">
-        <div class="field-value">https://twitchapps.com/tmi/</div>
+        <div class="field-value">https://irlhosting.com/tmi/</div>
       </div>
       <p style="margin-top:6px;">② 按「Connect」→ 授權 → 複製出現的 <code style="color:#7dd3fc">oauth:xxxxxxxxxx</code>，這就是你的 Token。</p>
     </div>
