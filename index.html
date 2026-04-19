@@ -337,12 +337,12 @@
       <table style="margin-top:10px;">
         <tr><th>App 上的欄位名稱</th><th>填入的內容</th></tr>
         <tr><td><strong>Name</strong>（設定名稱）</td><td>隨便取，例如 <code style="color:#7dd3fc">flycat</code></td></tr>
-        <tr><td><strong>Protocol</strong>（協定）</td><td>選 <strong>SRT</strong>（不是 SRTLA）</td></tr>
+        <tr><td><strong>Protocol</strong>（協定）</td><td>選 <strong>SRT(LA)</strong></td></tr>
         <tr><td><strong>URL</strong></td><td><code style="color:#7dd3fc">srt://flycat.ddns.net:5002</code></td></tr>
         <tr><td><strong>Stream ID</strong></td><td><code style="color:#fbbf24">publish:你的 Twitch ID</code></td></tr>
         <tr><td><strong>Latency</strong>（延遲）</td><td>120</td></tr>
       </table>
-      <div class="warn" style="margin-top:10px;"><strong>Protocol 要選 SRT，不是 SRTLA。</strong>兩個很像但不一樣，SRTLA 目前與本伺服器不相容。<br>如果下拉選單裡<strong>只有 SRTLA 沒有 SRT</strong>，請聯絡管理員，需要另外調整伺服器設定。</div>
+      <div class="tip" style="margin-top:10px;"><strong>URL 開頭填 srt:// 就是純 SRT 模式</strong>，與本伺服器相容。不要填 srtla:// 開頭。</div>
     </div>
     <div class="step">
       <div class="step-header"><span class="mini-num">4</span><h3>畫質設定</h3></div>
