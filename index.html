@@ -269,7 +269,7 @@
     <div class="step">
       <div class="step-header"><span class="mini-num">1</span><h3>安裝 App</h3></div>
       <p>Android 手機到 Google Play 搜尋「<strong>IRL Pro</strong>」安裝（免費）。</p>
-      <div class="tip" style="margin-top:10px;"><strong>iOS 沒有這個 App。</strong>iPhone 用戶請改用 <strong>Larix Broadcaster</strong>，設定方式類似。</div>
+      <div class="tip" style="margin-top:10px;"><strong>iPhone 用戶請跳到下方的「iOS 手機設定」章節。</strong>IRL Pro 沒有 iOS 版。</div>
     </div>
     <div class="step">
       <div class="step-header"><span class="mini-num">2</span><h3>進入設定頁面</h3></div>
@@ -318,9 +318,58 @@
   </div>
 </div>
 
+<!-- iOS 手機設定 -->
+<div class="section">
+  <div class="section-title"><span class="step-num">3</span> iOS 手機安裝 Moblin（iPhone 用）</div>
+  <div class="steps">
+    <div class="step">
+      <div class="step-header"><span class="mini-num">1</span><h3>安裝 App</h3></div>
+      <p>到 App Store 搜尋「<strong>Moblin</strong>」安裝（免費）。</p>
+    </div>
+    <div class="step">
+      <div class="step-header"><span class="mini-num">2</span><h3>進入串流設定</h3></div>
+      <p>打開 Moblin，點畫面上的 <strong>⚙️ 齒輪</strong> 進入設定。</p>
+      <p style="margin-top:8px;">選 <strong>「Streams」</strong>（串流設定），點右上角 <strong>「＋」</strong> 新增一組。</p>
+    </div>
+    <div class="step">
+      <div class="step-header"><span class="mini-num">3</span><h3>填入連線資料</h3></div>
+      <p>依序填入以下欄位：</p>
+      <table style="margin-top:10px;">
+        <tr><th>App 上的欄位名稱</th><th>填入的內容</th></tr>
+        <tr><td><strong>Name</strong>（設定名稱）</td><td>隨便取，例如 <code style="color:#7dd3fc">flycat</code></td></tr>
+        <tr><td><strong>Protocol</strong>（協定）</td><td>選 <strong>SRT</strong>（不是 SRTLA）</td></tr>
+        <tr><td><strong>URL</strong></td><td><code style="color:#7dd3fc">srt://flycat.ddns.net:5002</code></td></tr>
+        <tr><td><strong>Stream ID</strong></td><td><code style="color:#fbbf24">publish:你的 Twitch ID</code></td></tr>
+        <tr><td><strong>Latency</strong>（延遲）</td><td>120</td></tr>
+      </table>
+      <div class="warn" style="margin-top:10px;"><strong>Protocol 要選 SRT，不是 SRTLA。</strong>兩個很像但不一樣，選錯會連不上。</div>
+    </div>
+    <div class="step">
+      <div class="step-header"><span class="mini-num">4</span><h3>畫質設定</h3></div>
+      <p>設定頁面找到 <strong>「Camera」→「Video」</strong>，調整以下欄位：</p>
+      <table style="margin-top:10px;">
+        <tr><th>欄位名稱</th><th>建議設定</th><th>說明</th></tr>
+        <tr><td><strong>Resolution</strong>（解析度）</td><td>1080p</td><td>網路差可改 720p</td></tr>
+        <tr><td><strong>FPS</strong>（影格率）</td><td>30</td><td>60 fps 需更好的網路</td></tr>
+        <tr><td><strong>Bitrate</strong>（畫面品質）</td><td>3000～5000 kbps</td><td>數字越高越清晰</td></tr>
+      </table>
+    </div>
+    <div class="step">
+      <div class="step-header"><span class="mini-num">5</span><h3>開啟背景串流</h3></div>
+      <p>⚙️ → <strong>Streams</strong> → 選你剛建的設定 → 往下滑 → 開啟 <strong>「Background streaming」</strong>。</p>
+      <p style="margin-top:8px;">這樣手機螢幕關掉或切換 App 時，推流不會中斷。</p>
+    </div>
+    <div class="step">
+      <div class="step-header"><span class="mini-num">6</span><h3>開始推流</h3></div>
+      <p>回主畫面，點下方 <strong>推流按鈕</strong> 開始推流。</p>
+      <p style="margin-top:8px;">畫面出現連線資訊代表成功，可以繼續下一步了。</p>
+    </div>
+  </div>
+</div>
+
 <!-- OBS 設定 -->
 <div class="section">
-  <div class="section-title"><span class="step-num">3</span> 電腦 OBS 設定</div>
+  <div class="section-title"><span class="step-num">4</span> 電腦 OBS 設定</div>
   <div class="tip">沒有 OBS 的話，先到 <strong>https://obsproject.com</strong> 下載安裝。</div>
   <div class="steps" style="margin-top:16px;">
     <div class="step">
@@ -368,7 +417,7 @@
 
 <!-- NOALBS 設定 -->
 <div class="section">
-  <div class="section-title"><span class="step-num">4</span> NOALBS 設定（自動切場景的程式）</div>
+  <div class="section-title"><span class="step-num">5</span> NOALBS 設定（自動切場景的程式）</div>
   <div class="tip"><strong>NOALBS 是什麼？</strong>一個在背景跑的小程式，它會一直盯著你的訊號強弱，自動幫你切換 OBS 場景，不用你手動操作。</div>
   <div class="steps" style="margin-top:16px;">
     <div class="step">
@@ -486,7 +535,7 @@
 
 <!-- 聊天室指令 -->
 <div class="section">
-  <div class="section-title"><span class="step-num">5</span> 聊天室指令</div>
+  <div class="section-title"><span class="step-num">6</span> 聊天室指令</div>
   <p style="color:#c0c4d8; margin-bottom:14px;">在 <strong>你的 Twitch 聊天室</strong> 打這些指令來控制直播：</p>
   <table>
     <tr><th>指令</th><th>效果</th><th>誰能用</th></tr>
@@ -500,7 +549,7 @@
 
 <!-- 每次直播流程 -->
 <div class="section">
-  <div class="section-title"><span class="step-num">6</span> 每次直播前的順序</div>
+  <div class="section-title"><span class="step-num">7</span> 每次直播前的順序</div>
   <div class="steps">
     <div class="step">
       <div class="step-header"><span class="mini-num">1</span><h3>開電腦 OBS</h3></div>
