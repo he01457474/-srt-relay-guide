@@ -419,116 +419,45 @@
 <div class="section">
   <div class="section-title"><span class="step-num">5</span> NOALBS 設定（自動切場景的程式）</div>
   <div class="tip"><strong>NOALBS 是什麼？</strong>一個在背景跑的小程式，它會一直盯著你的訊號強弱，自動幫你切換 OBS 場景，不用你手動操作。</div>
+  <div class="warn"><strong>注意：</strong>這一段是在你的直播電腦上做，不是在管理員的伺服器上做。中繼伺服器由管理員負責開，你只要設定自己的 OBS 和 NOALBS。</div>
   <div class="steps" style="margin-top:16px;">
     <div class="step">
-      <div class="step-header"><span class="mini-num">1</span><h3>下載 NOALBS</h3></div>
-      <p>前往這個網址下載：</p>
-      <div class="field" style="margin-top:8px;">
-        <div class="field-value">https://github.com/NOALBS/nginx-obs-automatic-low-bitrate-switching/releases</div>
-      </div>
-      <p style="margin-top:8px;">找最新版本，下載 <strong>noalbs-v....x86_64-pc-windows-msvc.zip</strong> 這個檔案，解壓縮到任意資料夾。</p>
-    </div>
-    <div class="step">
-      <div class="step-header"><span class="mini-num">2</span><h3>取得 Twitch Bot Token</h3></div>
+      <div class="step-header"><span class="mini-num">1</span><h3>取得 Twitch Bot Token</h3></div>
       <p>NOALBS 需要一個 Twitch 授權碼才能在聊天室發言。</p>
       <p style="margin-top:6px;">① 打開這個網址（<strong>建議用你的帳號登入 Twitch 後再開</strong>）：</p>
       <div class="field" style="margin-top:6px;">
         <div class="field-value">https://irlhosting.com/tmi/</div>
       </div>
       <p style="margin-top:6px;">② 按「Connect」→ 授權 → 複製出現的 <code style="color:#7dd3fc">oauth:xxxxxxxxxx</code>，這就是你的 Token。</p>
+      <div class="warn" style="margin-top:8px;"><strong>Token 不要貼給別人。</strong>只有等等安裝工具會用到。</div>
     </div>
     <div class="step">
-      <div class="step-header"><span class="mini-num">3</span><h3>建立 .env 檔案</h3></div>
-      <p>在 NOALBS 資料夾裡，新增一個純文字檔，命名為 <strong>.env</strong>（注意前面有個點，沒有副檔名）。</p>
-      <p style="margin-top:8px;">用記事本打開，貼上以下內容並替換：</p>
+      <div class="step-header"><span class="mini-num">2</span><h3>執行管理員給你的安裝工具</h3></div>
+      <p>管理員會給你一個 <strong>NOALBS 一鍵安裝工具</strong>資料夾。解壓縮後，進到資料夾裡雙擊：</p>
       <div class="field" style="margin-top:8px;">
-        <div class="field-value">TWITCH_BOT_USERNAME=<span class="highlight-text">你的Twitch帳號</span><br>TWITCH_BOT_OAUTH=<span class="highlight-text">oauth:你剛才複製的token</span></div>
+        <div class="field-value">launchers\install_noalbs.bat</div>
       </div>
-      <div class="tip" style="margin-top:8px;"><strong>找不到 .env 怎麼建？</strong>開記事本 → 存檔時檔名填 <code>.env</code>，存檔類型選「所有檔案」，存到 NOALBS 資料夾裡。</div>
+      <p style="margin-top:8px;">如果 Windows 跳出安全提醒，選「其他資訊」→「仍要執行」。</p>
     </div>
     <div class="step">
-      <div class="step-header"><span class="mini-num">4</span><h3>建立 config.json 設定檔</h3></div>
-      <p>同樣在 NOALBS 資料夾，新增一個 <strong>config.json</strong> 檔案，貼上以下內容。</p>
-      <p style="margin-top:8px;"><strong>需要替換的地方用黃色標示，共 4 處：</strong></p>
-      <div class="field" style="margin-top:8px; line-height:1.6;">
-        <div class="field-value">{<br>
-&nbsp;&nbsp;"user": {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;"id": null,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;"name": "<span class="highlight-text">你的Twitch頻道名稱</span>",<br>
-&nbsp;&nbsp;&nbsp;&nbsp;"passwordHash": null<br>
-&nbsp;&nbsp;},<br>
-&nbsp;&nbsp;"switcher": {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;"bitrateSwitcherEnabled": true,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;"onlySwitchWhenStreaming": true,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;"instantlySwitchOnRecover": true,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;"autoSwitchNotification": true,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;"retryAttempts": 5,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;"triggers": {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"low": 800,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"rtt": 2500,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"offline": 100<br>
-&nbsp;&nbsp;&nbsp;&nbsp;},<br>
-&nbsp;&nbsp;&nbsp;&nbsp;"switchingScenes": {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"normal": "IRL",<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"low": "lowB",<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"offline": "BRB"<br>
-&nbsp;&nbsp;&nbsp;&nbsp;},<br>
-&nbsp;&nbsp;&nbsp;&nbsp;"streamServers": [<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"streamServer": {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"type": "Mediamtx",<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"statsUrl": "http://flycat.ddns.net:9997/v3/paths/get/<span class="highlight-text">你的 Twitch ID</span>"<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"name": "MediaMTX",<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"priority": 1,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"overrideScenes": null,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"dependsOn": null,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"enabled": true<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
-&nbsp;&nbsp;&nbsp;&nbsp;]<br>
-&nbsp;&nbsp;},<br>
-&nbsp;&nbsp;"software": {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;"type": "Obs",<br>
-&nbsp;&nbsp;&nbsp;&nbsp;"host": "localhost",<br>
-&nbsp;&nbsp;&nbsp;&nbsp;"password": "<span class="highlight-text">你的OBS WebSocket密碼</span>",<br>
-&nbsp;&nbsp;&nbsp;&nbsp;"port": 4455<br>
-&nbsp;&nbsp;},<br>
-&nbsp;&nbsp;"chat": {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;"platform": "Twitch",<br>
-&nbsp;&nbsp;&nbsp;&nbsp;"username": "<span class="highlight-text">你的Twitch帳號</span>",<br>
-&nbsp;&nbsp;&nbsp;&nbsp;"admins": ["<span class="highlight-text">你的Twitch頻道名稱</span>"],<br>
-&nbsp;&nbsp;&nbsp;&nbsp;"ignoreUsers": [],<br>
-&nbsp;&nbsp;&nbsp;&nbsp;"language": "EN",<br>
-&nbsp;&nbsp;&nbsp;&nbsp;"prefix": "!",<br>
-&nbsp;&nbsp;&nbsp;&nbsp;"enablePublicCommands": false,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;"enableModCommands": true,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;"enableAutoStopStreamOnHostOrRaid": false,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;"announceRaidOnAutoStop": false,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;"commands": {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Fix": { "permission": "Mod", "userPermissions": null, "alias": ["f"] },<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Switch": { "permission": "Mod", "userPermissions": null, "alias": ["ss"] },<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Bitrate": { "permission": null, "userPermissions": null, "alias": ["b"] },<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Start": { "permission": "Mod", "userPermissions": null, "alias": ["start"] },<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Stop": { "permission": "Mod", "userPermissions": null, "alias": ["stop"] }<br>
-&nbsp;&nbsp;&nbsp;&nbsp;}<br>
-&nbsp;&nbsp;},<br>
-&nbsp;&nbsp;"optionalScenes": { "starting": null, "ending": null, "privacy": null, "refresh": null },<br>
-&nbsp;&nbsp;"optionalOptions": {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;"twitchTranscodingCheck": false,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;"twitchTranscodingRetries": 5,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;"twitchTranscodingDelaySeconds": 15,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;"offlineTimeout": null,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;"recordWhileStreaming": false,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;"switchToStartingSceneOnStreamStart": false,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;"switchFromStartingSceneToLiveScene": false<br>
-&nbsp;&nbsp;}<br>
-}</div>
-      </div>
+      <div class="step-header"><span class="mini-num">3</span><h3>依序輸入三個資料</h3></div>
+      <p>工具會問你三件事，照著貼上：</p>
+      <table style="margin-top:10px;">
+        <tr><th>工具詢問</th><th>你要填什麼</th></tr>
+        <tr><td>Twitch ID</td><td>管理員給你的英文 ID，例如 <code>kevin</code></td></tr>
+        <tr><td>Twitch Token</td><td>剛才複製的 <code>oauth:xxxxxxxxxx</code></td></tr>
+        <tr><td>OBS WebSocket 密碼</td><td>你在 OBS WebSocket 設定裡自己設的密碼</td></tr>
+      </table>
+      <p style="margin-top:8px;">工具會自動下載 NOALBS，並幫你建立 <code>.env</code>、<code>config.json</code> 和啟動檔。</p>
     </div>
     <div class="step">
-      <div class="step-header"><span class="mini-num">5</span><h3>執行 NOALBS</h3></div>
-      <p>雙擊 <strong>noalbs.exe</strong>，黑色視窗出現且沒有紅色錯誤訊息，就代表成功連上了。</p>
-      <div class="tip"><strong>連不上 OBS？</strong>確認 OBS 有開啟，且 WebSocket 密碼有填對。</div>
+      <div class="step-header"><span class="mini-num">4</span><h3>執行 NOALBS</h3></div>
+      <p>安裝完成後，工具會打開 NOALBS 資料夾。之後每次直播前，雙擊：</p>
+      <div class="field" style="margin-top:8px;">
+        <div class="field-value">啟動_NOALBS.bat</div>
+      </div>
+      <div class="tip"><strong>連不上 OBS？</strong>先確認 OBS 有開、WebSocket 有啟用、密碼有填對。</div>
+      <div class="tip"><strong>監測網址連不上？</strong>先問管理員中繼伺服器是否已開，不需要自己修 Docker 或 MediaMTX。</div>
     </div>
   </div>
 </div>
@@ -556,8 +485,8 @@
       <p>確認三個場景都有，IRL 場景裡有媒體來源。</p>
     </div>
     <div class="step">
-      <div class="step-header"><span class="mini-num">2</span><h3>執行 noalbs.exe</h3></div>
-      <p>等黑色視窗出現「Connected to OBS」就代表連上了。</p>
+      <div class="step-header"><span class="mini-num">2</span><h3>執行啟動_NOALBS.bat</h3></div>
+      <p>等黑色視窗出現「Connected to OBS」就代表連上你的 OBS 了。</p>
     </div>
     <div class="step">
       <div class="step-header"><span class="mini-num">3</span><h3>手機開 IRL Pro 開始推流</h3></div>
