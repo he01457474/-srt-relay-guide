@@ -245,18 +245,18 @@
     <p style="color:#c0c4d8;">工具會問你 Twitch ID、Twitch Bot Token、OBS WebSocket 密碼。照工具提示貼上即可。完成後會開啟 NOALBS 資料夾，裡面會有：</p>
     <table style="margin-top:10px;">
       <tr><th>檔案</th><th>用途</th></tr>
-      <tr><td><code>我的直播設定.txt</code></td><td>手機和 OBS 要填的網址都在裡面</td></tr>
-      <tr><td><code>每次直播開這個.bat</code></td><td>以後每次直播前用它啟動 NOALBS</td></tr>
-      <tr><td><code>啟動_NOALBS.bat</code></td><td>只啟動 NOALBS，本身是備用入口</td></tr>
+      <tr><td><code>.env</code></td><td>NOALBS 登入 Twitch 聊天室用</td></tr>
+      <tr><td><code>config.json</code></td><td>NOALBS 控制 OBS 和監測中繼站用</td></tr>
+      <tr><td><code>啟動_NOALBS.bat</code></td><td>以後每次直播前用它啟動 NOALBS</td></tr>
     </table>
-    <div class="warn" style="margin-top:12px;"><strong>Token 不要傳給別人。</strong>Token 只需要貼進設定工具。下面章節只是輔助你把工具產生的資料填到手機和 OBS。</div>
+    <div class="warn" style="margin-top:12px;"><strong>Token 不要傳給別人。</strong>Token 只需要貼進設定工具。手機和 OBS 的欄位看下面章節填。</div>
   </div>
 </div>
 
 <!-- 手機設定 -->
 <div class="section">
   <div class="section-title"><span class="step-num">2</span> 手機安裝 IRL Pro</div>
-  <div class="tip"><strong>先跑完第 1 步。</strong>手機要填的 URL 和 Stream ID 都在工具產生的 <code>我的直播設定.txt</code>。</div>
+  <div class="tip"><strong>先跑完第 1 步。</strong>然後照這裡填手機推流設定。</div>
   <div class="steps">
     <div class="step">
       <div class="step-header"><span class="mini-num">1</span><h3>安裝 App</h3></div>
@@ -275,13 +275,13 @@
     </div>
     <div class="step">
       <div class="step-header"><span class="mini-num">4</span><h3>填入連線資料</h3></div>
-      <p>打開工具產生的 <strong>我的直播設定.txt</strong>，依序填入以下欄位：</p>
+      <p>依序填入以下欄位：</p>
       <table style="margin-top:10px;">
         <tr><th>App 上的欄位名稱</th><th>填入的內容</th></tr>
         <tr><td><strong>Name</strong>（設定名稱）</td><td>隨便取，例如 <code style="color:#7dd3fc">flycat</code></td></tr>
-        <tr><td><strong>URL</strong>（伺服器位址）</td><td>貼上「手機推流設定」裡的 URL</td></tr>
+        <tr><td><strong>URL</strong>（伺服器位址）</td><td><code style="color:#7dd3fc">srt://flycat.ddns.net:5002</code></td></tr>
         <tr><td><strong>Mode</strong></td><td>選 <strong>Video + Audio</strong></td></tr>
-        <tr><td><strong>streamid</strong></td><td>貼上「手機推流設定」裡的 Stream ID</td></tr>
+        <tr><td><strong>streamid</strong></td><td><code style="color:#fbbf24">publish:你的 Twitch ID</code></td></tr>
         <tr><td><strong>latency</strong>（延遲）</td><td>2500</td></tr>
       </table>
       <div class="warn" style="margin-top:10px;"><strong>streamid 不要打錯！</strong>格式是 <code>publish:</code> 加你的 Twitch ID，例如 <code>publish:kevin</code>，全部小寫。</div>
@@ -313,7 +313,7 @@
 <!-- iOS 手機設定 -->
 <div class="section">
   <div class="section-title"><span class="step-num">3</span> iOS 手機安裝 Moblin（iPhone 用）</div>
-  <div class="tip"><strong>先跑完第 1 步。</strong>iPhone 要填的 URL 和 Stream ID 都在工具產生的 <code>我的直播設定.txt</code>。</div>
+  <div class="tip"><strong>先跑完第 1 步。</strong>然後照這裡填 iPhone 推流設定。</div>
   <div class="steps">
     <div class="step">
       <div class="step-header"><span class="mini-num">1</span><h3>安裝 App</h3></div>
@@ -326,13 +326,13 @@
     </div>
     <div class="step">
       <div class="step-header"><span class="mini-num">3</span><h3>填入連線資料</h3></div>
-      <p>打開工具產生的 <strong>我的直播設定.txt</strong>，依序填入以下欄位：</p>
+      <p>依序填入以下欄位：</p>
       <table style="margin-top:10px;">
         <tr><th>App 上的欄位名稱</th><th>填入的內容</th></tr>
         <tr><td><strong>Name</strong>（設定名稱）</td><td>隨便取，例如 <code style="color:#7dd3fc">flycat</code></td></tr>
         <tr><td><strong>Protocol</strong>（協定）</td><td>選 <strong>SRT(LA)</strong></td></tr>
-        <tr><td><strong>URL</strong></td><td>貼上「手機推流設定」裡的 URL</td></tr>
-        <tr><td><strong>Stream ID</strong></td><td>貼上「手機推流設定」裡的 Stream ID</td></tr>
+        <tr><td><strong>URL</strong></td><td><code style="color:#7dd3fc">srt://flycat.ddns.net:5002</code></td></tr>
+        <tr><td><strong>Stream ID</strong></td><td><code style="color:#fbbf24">publish:你的 Twitch ID</code></td></tr>
         <tr><td><strong>Latency</strong>（延遲）</td><td>120</td></tr>
       </table>
       <div class="tip" style="margin-top:10px;"><strong>URL 開頭填 srt:// 就是純 SRT 模式</strong>，與本伺服器相容。不要填 srtla:// 開頭。</div>
@@ -364,7 +364,7 @@
 <div class="section">
   <div class="section-title"><span class="step-num">4</span> 電腦 OBS 設定</div>
   <div class="tip">沒有 OBS 的話，先到 <strong>https://obsproject.com</strong> 下載安裝。</div>
-  <div class="tip"><strong>OBS 要填的拉流網址</strong>在工具產生的 <code>我的直播設定.txt</code>，不用自己組網址。</div>
+  <div class="tip"><strong>OBS 要填的拉流網址</strong>在下面直接給你，把黃色的 Twitch ID 換成你的英文帳號。</div>
   <div class="steps" style="margin-top:16px;">
     <div class="step">
       <div class="step-header"><span class="mini-num">1</span><h3>建立三個場景</h3></div>
@@ -391,9 +391,9 @@
     <div class="step">
       <div class="step-header"><span class="mini-num">2</span><h3>把手機畫面加到 IRL 場景</h3></div>
       <p>點選 <strong>IRL</strong> 場景 → 右下角「來源」欄位按加號 → 選「<strong>媒體來源</strong>」→ 取消勾選「本機檔案」</p>
-      <p style="margin-top:8px;">在「輸入」欄位貼上 <strong>我的直播設定.txt</strong> 裡的「OBS 媒體來源」：</p>
+      <p style="margin-top:8px;">在「輸入」欄位貼上：</p>
       <div class="field" style="margin-top:8px;">
-        <div class="field-value">我的直播設定.txt → OBS 媒體來源 → 輸入</div>
+        <div class="field-value">srt://flycat.ddns.net:5002?streamid=read:<span class="highlight-text">你的 Twitch ID</span></div>
       </div>
       <p style="margin-top:8px;">勾選「<strong>重新連接時循環</strong>」→ 確定。</p>
     </div>
@@ -439,13 +439,13 @@
         <tr><td>Twitch Token</td><td>剛才複製的 <code>oauth:xxxxxxxxxx</code></td></tr>
         <tr><td>OBS WebSocket 密碼</td><td>你在 OBS WebSocket 設定裡自己設的密碼</td></tr>
       </table>
-      <p style="margin-top:8px;">工具會自動下載 NOALBS，並幫你建立 <code>.env</code>、<code>config.json</code>、<code>我的直播設定.txt</code> 和啟動檔。</p>
+      <p style="margin-top:8px;">工具會自動下載 NOALBS，並幫你建立 <code>.env</code>、<code>config.json</code> 和啟動檔。</p>
     </div>
     <div class="step">
       <div class="step-header"><span class="mini-num">4</span><h3>執行 NOALBS</h3></div>
       <p>安裝完成後，工具會打開 NOALBS 資料夾。之後每次直播前，雙擊：</p>
       <div class="field" style="margin-top:8px;">
-        <div class="field-value">每次直播開這個.bat</div>
+        <div class="field-value">啟動_NOALBS.bat</div>
       </div>
       <div class="tip"><strong>連不上 OBS？</strong>先確認 OBS 有開、WebSocket 有啟用、密碼有填對。</div>
       <div class="tip"><strong>監測網址連不上？</strong>先問管理員中繼伺服器是否已開，不需要自己修 Docker 或 MediaMTX。</div>
@@ -476,7 +476,7 @@
       <p>確認三個場景都有，IRL 場景裡有媒體來源。</p>
     </div>
     <div class="step">
-      <div class="step-header"><span class="mini-num">2</span><h3>執行每次直播開這個.bat</h3></div>
+      <div class="step-header"><span class="mini-num">2</span><h3>執行啟動_NOALBS.bat</h3></div>
       <p>等黑色視窗出現「Connected to OBS」就代表連上你的 OBS 了。</p>
     </div>
     <div class="step">
