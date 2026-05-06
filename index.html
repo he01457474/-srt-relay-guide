@@ -236,7 +236,7 @@
 <!-- 你的個人設定 -->
 <div class="section">
   <div class="section-title"><span class="step-num">1</span> 先跑一條龍設定工具</div>
-  <p style="color:#c0c4d8; margin-bottom:14px;">主要流程只有一件事：先跑管理員給你的「戶外直播一條龍設定工具」。工具會幫你產生手機、OBS、NOALBS 都要用的個人資料。</p>
+  <p style="color:#c0c4d8; margin-bottom:14px;">主要流程只有一件事：先跑管理員給你的「戶外直播一條龍設定工具」。工具會幫你產生 NOALBS 要用的設定檔，手機和 OBS 欄位照下面教學填。</p>
   <div class="step">
     <div class="field">
       <div class="field-label">請先雙擊</div>
@@ -284,6 +284,7 @@
         <tr><td><strong>streamid</strong></td><td><code style="color:#fbbf24">publish:你的 Twitch ID</code></td></tr>
         <tr><td><strong>latency</strong>（延遲）</td><td>2500</td></tr>
       </table>
+      <div class="tip" style="margin-top:10px;"><strong>如果 App 版本沒有 URL 欄位：</strong>Host 填 <code>flycat.ddns.net</code>，Port 填 <code>5002</code>，streamid 一樣填 <code>publish:你的 Twitch ID</code>。</div>
       <div class="warn" style="margin-top:10px;"><strong>streamid 不要打錯！</strong>格式是 <code>publish:</code> 加你的 Twitch ID，例如 <code>publish:kevin</code>，全部小寫。</div>
     </div>
     <div class="step">
@@ -333,8 +334,9 @@
         <tr><td><strong>Protocol</strong>（協定）</td><td>選 <strong>SRT(LA)</strong></td></tr>
         <tr><td><strong>URL</strong></td><td><code style="color:#7dd3fc">srt://flycat.ddns.net:5002</code></td></tr>
         <tr><td><strong>Stream ID</strong></td><td><code style="color:#fbbf24">publish:你的 Twitch ID</code></td></tr>
-        <tr><td><strong>Latency</strong>（延遲）</td><td>120</td></tr>
+        <tr><td><strong>Latency</strong>（延遲）</td><td>2500</td></tr>
       </table>
+      <div class="tip" style="margin-top:10px;"><strong>如果 App 版本把欄位拆開：</strong>Host 填 <code>flycat.ddns.net</code>，Port 填 <code>5002</code>，Stream ID 一樣填 <code>publish:你的 Twitch ID</code>。</div>
       <div class="tip" style="margin-top:10px;"><strong>URL 開頭填 srt:// 就是純 SRT 模式</strong>，與本伺服器相容。不要填 srtla:// 開頭。</div>
     </div>
     <div class="step">
@@ -395,7 +397,7 @@
       <div class="field" style="margin-top:8px;">
         <div class="field-value">srt://flycat.ddns.net:5002?streamid=read:<span class="highlight-text">你的 Twitch ID</span></div>
       </div>
-      <p style="margin-top:8px;">勾選「<strong>重新連接時循環</strong>」→ 確定。</p>
+      <p style="margin-top:8px;">「輸入格式」填 <code>mpegts</code>，「重新連線延遲」填 <code>3</code> 秒；建議勾選「來源啟用時重新開始播放」和「播放結束時不顯示任何內容」→ 確定。</p>
     </div>
     <div class="step">
       <div class="step-header"><span class="mini-num">3</span><h3>設定推流到 Twitch</h3></div>
