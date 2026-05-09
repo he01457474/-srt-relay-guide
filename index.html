@@ -242,8 +242,17 @@
       <div class="field-label">請先雙擊</div>
       <div class="field-value">launchers\install_noalbs.bat</div>
     </div>
-    <p style="color:#c0c4d8;">工具會問你 Twitch ID、Twitch Bot Token、OBS WebSocket 密碼。照工具提示貼上即可。完成後會開啟 NOALBS 資料夾，裡面會有：</p>
+    <p style="color:#c0c4d8;">工具會依序問你五件事，照提示貼上即可：</p>
     <table style="margin-top:10px;">
+      <tr><th>工具詢問</th><th>填什麼</th></tr>
+      <tr><td>① Twitch ID</td><td>你的 Twitch 英文帳號，例如 <code>kevin</code></td></tr>
+      <tr><td>② Bot Token</td><td>工具會幫你開網頁，複製 <code>oauth:xxxxxxxxxx</code> 貼回來</td></tr>
+      <tr><td>③ 伺服器選擇</td><td>通常選 <strong>1（flycat 伺服器）</strong>，不確定就問管理員</td></tr>
+      <tr><td>④ OBS WebSocket 密碼</td><td>你在 OBS → 工具 → WebSocket 伺服器設定 自己設的密碼</td></tr>
+      <tr><td>⑤ 場景名稱</td><td>直接按 Enter 就好（預設 IRL / lowB / BRB）</td></tr>
+    </table>
+    <p style="color:#c0c4d8; margin-top:12px;">完成後會自動開啟 NOALBS 資料夾（位置在 <code>C:\Users\你的電腦帳號\NOALBS_你的TwitchID\</code>），裡面會有：</p>
+    <table style="margin-top:8px;">
       <tr><th>檔案</th><th>用途</th></tr>
       <tr><td><code>.env</code></td><td>NOALBS 登入 Twitch 聊天室用</td></tr>
       <tr><td><code>config.json</code></td><td>NOALBS 控制 OBS 和監測中繼站用</td></tr>
@@ -433,15 +442,17 @@
       <p>NOALBS 設定會由一條龍工具自動產生，你不用手動下載 NOALBS，也不用自己建立 <code>.env</code> 或 <code>config.json</code>。</p>
     </div>
     <div class="step">
-      <div class="step-header"><span class="mini-num">3</span><h3>依序輸入三個資料</h3></div>
-      <p>第 1 步的工具會問你三件事，照著貼上：</p>
+      <div class="step-header"><span class="mini-num">3</span><h3>依序輸入五個資料</h3></div>
+      <p>第 1 步的工具會問你五件事，照著貼上：</p>
       <table style="margin-top:10px;">
         <tr><th>工具詢問</th><th>你要填什麼</th></tr>
-        <tr><td>Twitch ID</td><td>管理員給你的英文 ID，例如 <code>kevin</code></td></tr>
-        <tr><td>Twitch Token</td><td>剛才複製的 <code>oauth:xxxxxxxxxx</code></td></tr>
-        <tr><td>OBS WebSocket 密碼</td><td>你在 OBS WebSocket 設定裡自己設的密碼</td></tr>
+        <tr><td>① Twitch ID</td><td>你的 Twitch 英文帳號，例如 <code>kevin</code></td></tr>
+        <tr><td>② Bot Token</td><td>剛才複製的 <code>oauth:xxxxxxxxxx</code></td></tr>
+        <tr><td>③ 伺服器選擇</td><td>輸入 <strong>1</strong> 使用 flycat 伺服器（不確定就選這個）</td></tr>
+        <tr><td>④ OBS WebSocket 密碼</td><td>你在 OBS WebSocket 設定裡自己設的密碼</td></tr>
+        <tr><td>⑤ 場景名稱</td><td>直接按 Enter（預設 IRL / lowB / BRB）</td></tr>
       </table>
-      <p style="margin-top:8px;">工具會自動下載 NOALBS，並幫你建立 <code>.env</code>、<code>config.json</code> 和啟動檔。</p>
+      <p style="margin-top:8px;">工具會自動下載 NOALBS，並幫你建立 <code>.env</code>、<code>config.json</code> 和啟動檔，位置在 <code>C:\Users\你的電腦帳號\NOALBS_你的TwitchID\</code>。</p>
     </div>
     <div class="step">
       <div class="step-header"><span class="mini-num">4</span><h3>執行 NOALBS</h3></div>
