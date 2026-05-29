@@ -236,7 +236,7 @@
 <!-- 你的個人設定 -->
 <div class="section">
   <div class="section-title"><span class="step-num">1</span> 先跑一條龍設定工具</div>
-  <p style="color:#c0c4d8; margin-bottom:14px;">主要流程只有一件事：先跑管理員給你的「戶外直播一條龍設定工具」。工具會幫你產生 NOALBS 要用的設定檔，手機和 OBS 欄位照下面教學填。</p>
+  <p style="color:#c0c4d8; margin-bottom:14px;">主要流程只有一件事：先跑管理員給你的「戶外直播一條龍設定工具」。手機的 Stream ID 和 OBS 的拉流網址請貼管理員給你的完整文字，不要自己手動組。</p>
   <div class="step">
     <div class="field">
       <div class="field-label">請先雙擊</div>
@@ -290,11 +290,11 @@
         <tr><td><strong>Name</strong>（設定名稱）</td><td>隨便取，例如 <code style="color:#7dd3fc">flycat</code></td></tr>
         <tr><td><strong>URL</strong>（伺服器位址）</td><td><code style="color:#7dd3fc">srt://flycatirl.ddnsgeek.com:5002</code></td></tr>
         <tr><td><strong>Mode</strong></td><td>選 <strong>Video + Audio</strong></td></tr>
-        <tr><td><strong>streamid</strong></td><td><code style="color:#fbbf24">publish:你的 Twitch ID</code></td></tr>
+        <tr><td><strong>streamid</strong></td><td><code style="color:#fbbf24">publish:你的 Twitch ID:推流帳號:推流密鑰</code></td></tr>
         <tr><td><strong>latency</strong>（延遲）</td><td>2500</td></tr>
       </table>
-      <div class="tip" style="margin-top:10px;"><strong>如果 App 版本沒有 URL 欄位：</strong>Host 填 <code>flycatirl.ddnsgeek.com</code>，Port 填 <code>5002</code>，streamid 一樣填 <code>publish:你的 Twitch ID</code>。</div>
-      <div class="warn" style="margin-top:10px;"><strong>streamid 不要打錯！</strong>格式是 <code>publish:</code> 加你的 Twitch ID，例如 <code>publish:kevin</code>，全部小寫。</div>
+      <div class="tip" style="margin-top:10px;"><strong>如果 App 版本沒有 URL 欄位：</strong>Host 填 <code>flycatirl.ddnsgeek.com</code>，Port 填 <code>5002</code>，streamid 貼管理員給你的完整 Stream ID。</div>
+      <div class="warn" style="margin-top:10px;"><strong>streamid 不要自己簡化。</strong>白名單版會有推流帳號和密鑰，只填 <code>publish:你的 Twitch ID</code> 會連不上。</div>
     </div>
     <div class="step">
       <div class="step-header"><span class="mini-num">5</span><h3>畫質設定（Video）</h3></div>
@@ -302,10 +302,11 @@
       <table style="margin-top:10px;">
         <tr><th>欄位名稱</th><th>建議設定</th><th>說明</th></tr>
         <tr><td><strong>Resolution</strong>（解析度）</td><td>1920×1080</td><td>網路差可改 1280×720</td></tr>
-        <tr><td><strong>FPS</strong>（影格率）</td><td>30</td><td>60 fps 需更好的手機和網路</td></tr>
+        <tr><td><strong>FPS</strong>（影格率）</td><td>30</td><td>想要更順可以測 60，但手機和網路要夠穩</td></tr>
         <tr><td><strong>Bitrate</strong>（畫面品質）</td><td>3000～5000</td><td>數字越高越清晰，但也越耗網路</td></tr>
         <tr><td><strong>Keyframe frequency</strong>（關鍵影格）</td><td>2</td><td>固定填 2</td></tr>
       </table>
+      <div class="tip" style="margin-top:10px;"><strong>想測 60 fps：</strong>先把 FPS 改 60、Bitrate 提到 5000～8000 kbps。如果 OBS 黑畫面，請把編碼改成 H264 / AVC；若畫面卡頓或常斷線，就退回 30 fps。</div>
     </div>
     <div class="step">
       <div class="step-header"><span class="mini-num">6</span><h3>選用這組設定</h3></div>
@@ -342,10 +343,11 @@
         <tr><td><strong>Name</strong>（設定名稱）</td><td>隨便取，例如 <code style="color:#7dd3fc">flycat</code></td></tr>
         <tr><td><strong>Protocol</strong>（協定）</td><td>選 <strong>SRT(LA)</strong></td></tr>
         <tr><td><strong>URL</strong></td><td><code style="color:#7dd3fc">srt://flycatirl.ddnsgeek.com:5002</code></td></tr>
-        <tr><td><strong>Stream ID</strong></td><td><code style="color:#fbbf24">publish:你的 Twitch ID</code></td></tr>
+        <tr><td><strong>Stream ID</strong></td><td><code style="color:#fbbf24">publish:你的 Twitch ID:推流帳號:推流密鑰</code></td></tr>
         <tr><td><strong>Latency</strong>（延遲）</td><td>2500</td></tr>
       </table>
-      <div class="tip" style="margin-top:10px;"><strong>如果 App 版本把欄位拆開：</strong>Host 填 <code>flycatirl.ddnsgeek.com</code>，Port 填 <code>5002</code>，Stream ID 一樣填 <code>publish:你的 Twitch ID</code>。</div>
+      <div class="tip" style="margin-top:10px;"><strong>如果 App 版本把欄位拆開：</strong>Host 填 <code>flycatirl.ddnsgeek.com</code>，Port 填 <code>5002</code>，Stream ID 貼管理員給你的完整 Stream ID。</div>
+      <div class="warn" style="margin-top:10px;"><strong>Stream ID 不要自己簡化。</strong>白名單版會有推流帳號和密鑰，只填 <code>publish:你的 Twitch ID</code> 會連不上。</div>
       <div class="tip" style="margin-top:10px;"><strong>URL 開頭填 srt:// 就是純 SRT 模式</strong>，與本伺服器相容。不要填 srtla:// 開頭。</div>
     </div>
     <div class="step">
@@ -354,9 +356,10 @@
       <table style="margin-top:10px;">
         <tr><th>欄位名稱</th><th>建議設定</th><th>說明</th></tr>
         <tr><td><strong>Resolution</strong>（解析度）</td><td>1080p</td><td>網路差可改 720p</td></tr>
-        <tr><td><strong>FPS</strong>（影格率）</td><td>30</td><td>60 fps 需更好的網路</td></tr>
+        <tr><td><strong>FPS</strong>（影格率）</td><td>30</td><td>想要更順可以測 60，但手機和網路要夠穩</td></tr>
         <tr><td><strong>Bitrate</strong>（畫面品質）</td><td>3000～5000 kbps</td><td>數字越高越清晰</td></tr>
       </table>
+      <div class="tip" style="margin-top:10px;"><strong>想測 60 fps：</strong>先把 FPS 改 60、Bitrate 提到 5000～8000 kbps。如果 OBS 黑畫面，請改用 H264 / AVC；若畫面卡頓或常斷線，就退回 30 fps。</div>
     </div>
     <div class="step">
       <div class="step-header"><span class="mini-num">5</span><h3>開啟背景串流</h3></div>
@@ -375,7 +378,8 @@
 <div class="section">
   <div class="section-title"><span class="step-num">4</span> 電腦 OBS 設定</div>
   <div class="tip">沒有 OBS 的話，先到 <strong>https://obsproject.com</strong> 下載安裝。</div>
-  <div class="tip"><strong>OBS 要填的拉流網址</strong>在下面直接給你，把黃色的 Twitch ID 換成你的英文帳號。</div>
+  <div class="tip"><strong>OBS 要填的拉流網址</strong>請貼管理員給你的完整 OBS 媒體來源輸入，不要自己手動組。</div>
+  <div class="warn"><strong>管理員本機測試例外：</strong>如果 OBS 跟中繼伺服器開在同一台電腦，請用管理員提供的 <code>127.0.0.1:8890</code> 本機網址。一般台主自己的 OBS 才用下面的外部網址。</div>
   <div class="steps" style="margin-top:16px;">
     <div class="step">
       <div class="step-header"><span class="mini-num">1</span><h3>建立三個場景</h3></div>
@@ -404,9 +408,11 @@
       <p>點選 <strong>IRL</strong> 場景 → 右下角「來源」欄位按加號 → 選「<strong>媒體來源</strong>」→ 取消勾選「本機檔案」</p>
       <p style="margin-top:8px;">在「輸入」欄位貼上：</p>
       <div class="field" style="margin-top:8px;">
-        <div class="field-value">srt://flycatirl.ddnsgeek.com:5002?streamid=read:<span class="highlight-text">你的 Twitch ID</span></div>
+        <div class="field-value">srt://flycatirl.ddnsgeek.com:5002?streamid=read:<span class="highlight-text">你的 Twitch ID:拉流帳號:拉流密鑰</span></div>
       </div>
       <p style="margin-top:8px;">「輸入格式」填 <code>mpegts</code>，「重新連線延遲」填 <code>3</code> 秒；建議勾選「來源啟用時重新開始播放」和「播放結束時不顯示任何內容」→ 確定。</p>
+      <div class="warn" style="margin-top:10px;"><strong>OBS 網址也不要自己簡化。</strong>白名單版會有拉流帳號和密鑰，只填 <code>read:你的 Twitch ID</code> 會連不上。</div>
+      <div class="tip" style="margin-top:10px;"><strong>有聲音沒畫面或黑畫面：</strong>請把手機 App 的影像編碼改成 H264 / AVC。H265 / HEVC 不是每台電腦的 OBS 都能穩定解。</div>
     </div>
     <div class="step">
       <div class="step-header"><span class="mini-num">3</span><h3>設定推流到 Twitch</h3></div>
