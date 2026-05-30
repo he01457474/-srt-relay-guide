@@ -260,7 +260,7 @@
     <table style="margin-top:10px;">
       <tr><th>工具詢問</th><th>填什麼</th></tr>
       <tr><td>① Twitch ID</td><td>你的 Twitch 英文帳號，例如 <code>kevin</code></td></tr>
-      <tr><td>② Bot Token</td><td>工具會幫你開網頁，複製 <code>oauth:xxxxxxxxxx</code> 貼回來</td></tr>
+      <tr><td>② Bot Token</td><td>NOALBS 會用<strong>你自己的 Twitch 帳號</strong>在聊天室發系統訊息（不需要另外建機器人帳號）。工具會幫你開網頁，用你的 Twitch 帳號登入後按 Connect，複製 <code>oauth:xxxxxxxxxx</code> 貼回來</td></tr>
       <tr><td>③ 伺服器選擇</td><td>通常選 <strong>1（flycat 伺服器）</strong>，不確定就問管理員</td></tr>
       <tr><td>④ OBS WebSocket 密碼</td><td>你在 OBS → 工具 → WebSocket 伺服器設定 自己設的密碼</td></tr>
       <tr><td>⑤ 場景名稱</td><td>直接按 Enter 就好（預設 IRL / lowB / BRB）</td></tr>
@@ -460,8 +460,8 @@
   <div class="steps" style="margin-top:16px;">
     <div class="step">
       <div class="step-header"><span class="mini-num">1</span><h3>取得 Twitch Bot Token</h3></div>
-      <p>NOALBS 需要一個 Twitch 授權碼才能在聊天室發言。</p>
-      <p style="margin-top:6px;">① 打開這個網址（<strong>建議用你的帳號登入 Twitch 後再開</strong>）：</p>
+      <p>NOALBS 需要一個授權碼，才能用<strong>你自己的 Twitch 帳號</strong>在聊天室發訊息（例如「直播已開始」這類系統通知）。不需要另外建立機器人帳號，授權自己的帳號就好。</p>
+      <p style="margin-top:6px;">① 打開這個網址（<strong>先確認已用你的 Twitch 帳號登入瀏覽器</strong>）：</p>
       <div class="field" style="margin-top:6px;">
         <div class="field-value">https://irlhosting.com/tmi/</div>
       </div>
@@ -478,7 +478,7 @@
       <table style="margin-top:10px;">
         <tr><th>工具詢問</th><th>你要填什麼</th></tr>
         <tr><td>① Twitch ID</td><td>你的 Twitch 英文帳號，例如 <code>kevin</code></td></tr>
-        <tr><td>② Bot Token</td><td>剛才複製的 <code>oauth:xxxxxxxxxx</code></td></tr>
+        <tr><td>② Bot Token</td><td>剛才複製的 <code>oauth:xxxxxxxxxx</code>（這是你自己帳號的授權碼，NOALBS 會用你的帳號在聊天室發訊息）</td></tr>
         <tr><td>③ 伺服器選擇</td><td>輸入 <strong>1</strong> 使用 flycat 伺服器（不確定就選這個）</td></tr>
         <tr><td>④ OBS WebSocket 密碼</td><td>你在 OBS WebSocket 設定裡自己設的密碼</td></tr>
         <tr><td>⑤ 場景名稱</td><td>直接按 Enter（預設 IRL / lowB / BRB）</td></tr>
