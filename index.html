@@ -270,7 +270,8 @@
       <tr><th>檔案</th><th>用途</th></tr>
       <tr><td><code>.env</code></td><td>NOALBS 登入 Twitch 聊天室用</td></tr>
       <tr><td><code>config.json</code></td><td>NOALBS 控制 OBS 和監測中繼站用</td></tr>
-      <tr><td><code>啟動_NOALBS.bat</code></td><td>以後每次直播前用它啟動 NOALBS</td></tr>
+      <tr><td><code>啟動_NOALBS.bat</code></td><td>每次直播前用它啟動 NOALBS（背景執行，不會有視窗）</td></tr>
+      <tr><td><code>關閉_NOALBS.bat</code></td><td>直播結束後用它關閉 NOALBS</td></tr>
     </table>
     <p style="color:#c0c4d8; margin-top:12px;">如果你之後忘記某個資料在哪，可以照這張表找：</p>
     <table style="margin-top:8px;">
@@ -492,7 +493,7 @@
         <div class="field-value">啟動_NOALBS.bat</div>
       </div>
       <div class="tip"><strong>NOALBS 資料夾在哪？</strong>它會在 <code>install_noalbs.bat</code> 旁邊，名稱像 <code>NOALBS_你的TwitchID</code>。</div>
-      <div class="tip"><strong>NOALBS 在背景執行，不會有視窗。</strong>要關閉請打開工作管理員（Ctrl+Shift+Esc），找到 <code>noalbs.exe</code>，右鍵 → 結束工作。</div>
+      <div class="tip"><strong>NOALBS 在背景執行，不會有視窗。</strong>要關閉請雙擊同資料夾裡的 <code>關閉_NOALBS.bat</code>。</div>
       <div class="tip"><strong>連不上 OBS？</strong>先確認 OBS 有開、WebSocket 有啟用、密碼有填對。</div>
       <div class="tip"><strong>監測網址連不上？</strong>先問管理員中繼伺服器是否已開，不需要自己修 Docker 或 MediaMTX。</div>
     </div>
@@ -524,7 +525,7 @@
     <div class="step">
       <div class="step-header"><span class="mini-num">2</span><h3>執行啟動_NOALBS.bat</h3></div>
       <p>NOALBS 在背景執行，不會有視窗。雙擊後稍等幾秒，在 Twitch 聊天室打 <strong>!b</strong> 有回應就代表成功連上了。</p>
-      <p style="margin-top:8px;">直播結束後，打開工作管理員（Ctrl+Shift+Esc），找到 <code>noalbs.exe</code>，右鍵 → 結束工作。</p>
+      <p style="margin-top:8px;">直播結束後，雙擊同資料夾裡的 <code>關閉_NOALBS.bat</code> 關閉。</p>
     </div>
     <div class="step">
       <div class="step-header"><span class="mini-num">3</span><h3>手機開 IRL Pro 開始推流</h3></div>
