@@ -199,6 +199,21 @@
   <p>主要照設定工具做；這頁是看不懂欄位時的輔助說明</p>
 </header>
 
+<!-- 管理員要給台主的資料 -->
+<div class="section">
+  <div class="section-title">管理員需要給台主什麼？</div>
+  <p style="color:#c0c4d8; margin-bottom:14px;">台主不用自己猜網址或密鑰。管理員用白名單工具新增台主後，把產生的資料交給台主即可。</p>
+  <table>
+    <tr><th>要給台主的東西</th><th>用途</th></tr>
+    <tr><td>直播連線資料文字檔</td><td>裡面有手機 URL、手機 Stream ID、OBS 媒體來源網址</td></tr>
+    <tr><td><code>install_noalbs.bat</code></td><td>台主第一次設定 NOALBS 時雙擊執行</td></tr>
+    <tr><td>這個教學網頁</td><td>台主忘記欄位怎麼填時看這頁</td></tr>
+  </table>
+  <div class="tip" style="margin-top:10px;"><strong>直播連線資料文字檔在哪裡？</strong>管理員端白名單工具會輸出在 <code>projects/irl-stream/config/exports/台主ID-settings.txt</code>。</div>
+  <div class="warn" style="margin-top:10px;"><strong>不要只丟網址給台主。</strong>白名單版一定需要完整 Stream ID 和完整 OBS 媒體來源網址，少了推流 / 拉流密鑰會連不上。</div>
+  <div class="warn" style="margin-top:10px;"><strong>不要傳管理員本機測試網址。</strong><code>127.0.0.1:8890</code> 只有管理員這台電腦能用，外部台主要用 <code>flycatirl.ddnsgeek.com:5002</code>。</div>
+</div>
+
 <!-- 概念說明 -->
 <div class="section">
   <div class="section-title">這套系統在幹嘛？</div>
