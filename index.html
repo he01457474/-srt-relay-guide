@@ -206,45 +206,103 @@
 <!-- Step 2 手機 -->
 <div class="section">
   <div class="section-title"><span class="step-num">2</span> 手機設定</div>
-  <p style="color:#c0c4d8; margin-bottom:12px;"><strong style="color:#fff">URL 和 Stream ID 請整串貼上收到的直播連線資料文字檔裡的內容，不要自己修改。</strong></p>
-  <div class="warn">少了推流帳號或密鑰的部分（例如只填 <code>publish:你的Twitch ID</code>）會連不上中繼站。</div>
-  <div class="steps" style="margin-top:14px;">
+  <div class="warn"><strong>URL 和 Stream ID 請整串貼上收到的直播連線資料文字檔裡的內容，不要自己修改。</strong>少了推流帳號或密鑰的部分（例如只填 <code>publish:你的TwitchID</code>）會連不上中繼站。</div>
+
+  <div class="steps" style="margin-top:16px;">
+
+    <!-- Android -->
     <div class="step">
-      <div class="step-header"><span class="mini-num">A</span><h3>Android — IRL Pro</h3></div>
-      <p>⚙ → Connections → New connection → 選 SRT → 填入文字檔裡的 URL 和 streamid → 回清單點選這組 → 主畫面按 Go Live。</p>
-      <div class="tip" style="margin-top:8px;"><strong>建議畫質：</strong>1080p、30fps、Bitrate 3000–5000、Keyframe frequency 2。黑畫面請把編碼改成 H264。</div>
+      <div class="step-header"><span class="mini-num">A</span><h3>Android — IRL Pro（Google Play 免費下載）</h3></div>
+      <p><strong style="color:#fff">① 進入推流設定</strong></p>
+      <p>打開 IRL Pro，點左上角的<strong>齒輪圖示 ⚙</strong> → 選 <strong>Connections</strong>（連線設定）→ 點右上角 <strong>New connection</strong>。</p>
+      <p style="margin-top:10px;"><strong style="color:#fff">② 選擇協定</strong></p>
+      <p>出現協定選擇時，選 <strong>SRT</strong>。</p>
+      <p style="margin-top:10px;"><strong style="color:#fff">③ 填入連線資料</strong></p>
+      <table style="margin-top:8px;">
+        <tr><th>App 欄位名稱</th><th>填什麼</th></tr>
+        <tr><td><strong>Name</strong>（設定名稱）</td><td>隨便取，例如 <code>flycat</code></td></tr>
+        <tr><td><strong>URL</strong></td><td>直播連線資料文字檔裡的「URL / Host」那行，整串貼上</td></tr>
+        <tr><td><strong>streamid</strong></td><td>直播連線資料文字檔裡的「Stream ID」那行，整串貼上</td></tr>
+        <tr><td><strong>latency</strong>（延遲）</td><td>填 <code>2500</code></td></tr>
+        <tr><td><strong>Mode</strong></td><td>選 <strong>Video + Audio</strong></td></tr>
+      </table>
+      <div class="tip" style="margin-top:10px;"><strong>如果 App 版本沒有 URL 欄位，改填：</strong>Host 填文字檔裡的域名部分，Port 填 <code>5002</code>，streamid 貼整串。</div>
+      <p style="margin-top:10px;"><strong style="color:#fff">④ 畫質設定</strong></p>
+      <p>在設定頁面找到 <strong>Video</strong> 區塊：Resolution 選 <code>1920×1080</code>、FPS 選 <code>30</code>、Bitrate 填 <code>4000</code>、Keyframe frequency 填 <code>2</code>。</p>
+      <p style="margin-top:10px;"><strong style="color:#fff">⑤ 啟用這組設定並開始推流</strong></p>
+      <p>回到 Connections 清單，點你剛建的設定前面的<strong>圓圈</strong>讓它變成選取狀態 → 回主畫面按 <strong>Go Live</strong>。看到綠色連線狀態就代表成功傳到中繼站了。</p>
+      <div class="tip"><strong>出現黑畫面：</strong>把手機 App 的影像編碼改成 H264 / AVC（H265 / HEVC 部分電腦 OBS 無法解碼）。</div>
     </div>
+
+    <!-- iPhone -->
     <div class="step">
-      <div class="step-header"><span class="mini-num">B</span><h3>iPhone — Moblin</h3></div>
-      <p>⚙ → Streams → ＋ → 選 SRT(LA) → 填入文字檔裡的 URL 和 Stream ID → 開啟「Background streaming」→ 回主畫面按推流按鈕。</p>
-      <div class="tip" style="margin-top:8px;"><strong>建議畫質：</strong>1080p、30fps、Bitrate 3000–5000。黑畫面請改 H264。</div>
+      <div class="step-header"><span class="mini-num">B</span><h3>iPhone — Moblin（App Store 免費下載）</h3></div>
+      <p><strong style="color:#fff">① 進入串流設定</strong></p>
+      <p>打開 Moblin，點畫面上的<strong>齒輪 ⚙️</strong> → 選 <strong>Streams</strong>（串流設定）→ 點右上角 <strong>＋</strong> 新增一組。</p>
+      <p style="margin-top:10px;"><strong style="color:#fff">② 填入連線資料</strong></p>
+      <table style="margin-top:8px;">
+        <tr><th>App 欄位名稱</th><th>填什麼</th></tr>
+        <tr><td><strong>Name</strong>（設定名稱）</td><td>隨便取，例如 <code>flycat</code></td></tr>
+        <tr><td><strong>Protocol</strong>（協定）</td><td>選 <strong>SRT(LA)</strong></td></tr>
+        <tr><td><strong>URL</strong></td><td>直播連線資料文字檔裡的「URL / Host」那行，整串貼上</td></tr>
+        <tr><td><strong>Stream ID</strong></td><td>直播連線資料文字檔裡的「Stream ID」那行，整串貼上</td></tr>
+        <tr><td><strong>Latency</strong>（延遲）</td><td>填 <code>2500</code></td></tr>
+      </table>
+      <p style="margin-top:10px;"><strong style="color:#fff">③ 畫質設定</strong></p>
+      <p>⚙️ → <strong>Camera → Video</strong>：Resolution 選 <code>1080p</code>、FPS 選 <code>30</code>、Bitrate 填 <code>4000 kbps</code>。</p>
+      <p style="margin-top:10px;"><strong style="color:#fff">④ 開啟背景串流</strong></p>
+      <p>⚙️ → Streams → 選你剛建的設定 → 往下滑 → 開啟 <strong>Background streaming</strong>（這樣螢幕關掉或切 App 時推流不會中斷）。</p>
+      <p style="margin-top:10px;"><strong style="color:#fff">⑤ 開始推流</strong></p>
+      <p>回主畫面，點下方<strong>推流按鈕</strong>開始推流。畫面出現連線資訊代表成功。</p>
+      <div class="tip"><strong>出現黑畫面：</strong>把影像編碼改成 H264 / AVC。</div>
     </div>
+
   </div>
 </div>
 
 <!-- Step 3 OBS -->
 <div class="section">
   <div class="section-title"><span class="step-num">3</span> 電腦 OBS 設定</div>
-  <p style="color:#c0c4d8; margin-bottom:12px;">需要三個場景（名稱要完全一樣）：</p>
-  <div class="scenes" style="margin-bottom:16px;">
-    <div class="scene-card good"><div class="dot"></div><div class="scene-name">IRL</div><div class="scene-desc">訊號正常</div></div>
-    <div class="scene-card low"><div class="dot"></div><div class="scene-name">lowB</div><div class="scene-desc">訊號變差</div></div>
-    <div class="scene-card bad"><div class="dot"></div><div class="scene-name">BRB</div><div class="scene-desc">完全斷線</div></div>
-  </div>
-  <div class="steps">
+  <div class="tip">沒有 OBS 的話，先到 <strong>obsproject.com</strong> 下載安裝免費版。</div>
+  <div class="steps" style="margin-top:14px;">
+
     <div class="step">
-      <div class="step-header"><span class="mini-num">1</span><h3>加入手機畫面（IRL 場景）</h3></div>
-      <p>IRL 場景 → 來源 → ＋ → 媒體來源 → 取消「本機檔案」→ 輸入欄貼上直播連線資料文字檔裡的 OBS 媒體來源網址 → 輸入格式填 <code>mpegts</code>，重新連線延遲填 <code>3</code> 秒 → 確定。</p>
-      <div class="tip" style="margin-top:8px;">黑畫面請把手機 App 的影像編碼改成 H264 / AVC。</div>
+      <div class="step-header"><span class="mini-num">1</span><h3>建立三個場景</h3></div>
+      <p>場景就像是不同的「畫面模板」，訊號好壞時會自動切換。在 OBS 左下角「<strong>場景</strong>」欄位，按 <strong>＋</strong> 新增三個，<strong>名稱要完全一樣（包含大小寫）</strong>：</p>
+      <div class="scenes" style="margin-top:12px;">
+        <div class="scene-card good"><div class="dot"></div><div class="scene-name">IRL</div><div class="scene-desc">訊號正常時的主畫面</div></div>
+        <div class="scene-card low"><div class="dot"></div><div class="scene-name">lowB</div><div class="scene-desc">訊號變差時自動切換</div></div>
+        <div class="scene-card bad"><div class="dot"></div><div class="scene-name">BRB</div><div class="scene-desc">完全斷線時自動切換</div></div>
+      </div>
+      <p style="margin-top:10px;">lowB 和 BRB 場景可以放靜態圖片或文字，讓觀眾知道你暫時斷線；IRL 場景放手機畫面（下一步設定）。</p>
     </div>
+
     <div class="step">
-      <div class="step-header"><span class="mini-num">2</span><h3>推流到 Twitch</h3></div>
-      <p>設定 → 串流 → 服務選 Twitch → 連結你的帳號。</p>
+      <div class="step-header"><span class="mini-num">2</span><h3>在 IRL 場景加入手機畫面</h3></div>
+      <p>先點選左下角的 <strong>IRL</strong> 場景，然後在右下角「<strong>來源</strong>」欄位按 <strong>＋</strong> → 選「<strong>媒體來源</strong>」→ 取消勾選「<strong>本機檔案</strong>」。</p>
+      <p style="margin-top:8px;">在「<strong>輸入</strong>」欄位貼上直播連線資料文字檔裡的 <strong>OBS 媒體來源</strong>那一整串網址。</p>
+      <p style="margin-top:8px;">然後設定以下兩個欄位：</p>
+      <table style="margin-top:8px;">
+        <tr><th>欄位</th><th>填什麼</th></tr>
+        <tr><td><strong>輸入格式</strong></td><td><code>mpegts</code></td></tr>
+        <tr><td><strong>重新連線延遲</strong></td><td><code>3</code>（秒）</td></tr>
+      </table>
+      <p style="margin-top:8px;">設好後按「<strong>確定</strong>」。OBS 畫面應該會出現手機傳來的畫面（手機要先開始推流）。</p>
+      <div class="warn" style="margin-top:10px;"><strong>OBS 網址也要整串貼上。</strong>少了拉流帳號或密鑰的部分會連不上中繼站，畫面會是黑的。</div>
+      <div class="tip">有聲音但黑畫面：把手機 App 的影像編碼改成 H264 / AVC，H265 / HEVC 部分電腦 OBS 無法解碼。</div>
     </div>
+
     <div class="step">
-      <div class="step-header"><span class="mini-num">3</span><h3>開啟 WebSocket（讓 NOALBS 控制 OBS）</h3></div>
-      <p>工具 → WebSocket 伺服器設定 → 勾選啟用 → 設定一組密碼（Step 1 安裝工具會問這個）→ 確定。</p>
+      <div class="step-header"><span class="mini-num">3</span><h3>設定推流到 Twitch</h3></div>
+      <p>OBS 上方選單 → <strong>設定</strong> → <strong>串流</strong> → 服務選 <strong>Twitch</strong> → 點「<strong>連結帳號</strong>」→ 用瀏覽器登入你的 Twitch 帳號 → 授權。</p>
     </div>
+
+    <div class="step">
+      <div class="step-header"><span class="mini-num">4</span><h3>開啟 WebSocket（讓 NOALBS 可以控制 OBS）</h3></div>
+      <p>OBS 上方選單 → <strong>工具</strong> → <strong>WebSocket 伺服器設定</strong> → 勾選「<strong>啟用 WebSocket 伺服器</strong>」→ 設定一組密碼（自己記住，Step 1 安裝工具會問你這個密碼）→ 按「<strong>確定</strong>」。</p>
+      <div class="tip">如果你已經先跑完 Step 1 的安裝工具，記得確認這裡的密碼和你當時填的一樣。</div>
+    </div>
+
   </div>
 </div>
 
