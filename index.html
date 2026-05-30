@@ -210,9 +210,7 @@
     <tr><td>這個教學網頁</td><td>台主忘記欄位怎麼填時看這頁</td></tr>
   </table>
   <div class="tip" style="margin-top:10px;"><strong>直播連線資料文字檔在哪裡？</strong>管理員端白名單工具會輸出在 <code>projects/irl-stream/config/exports/台主ID-settings.txt</code>。</div>
-  <div class="tip" style="margin-top:10px;"><strong>中繼站如果搬到筆電：</strong>台主不用自己改路由器或猜新 IP。管理員會重新確認伺服器，必要時重新給一份新的直播連線資料文字檔。</div>
   <div class="warn" style="margin-top:10px;"><strong>不要只丟網址給台主。</strong>白名單版一定需要完整 Stream ID 和完整 OBS 媒體來源網址，少了推流 / 拉流密鑰會連不上。</div>
-  <div class="warn" style="margin-top:10px;"><strong>不要傳管理員本機測試網址。</strong><code>127.0.0.1:8890</code> 只有管理員這台電腦能用，外部台主要用 <code>flycatirl.ddnsgeek.com:5002</code>。</div>
 </div>
 
 <!-- 概念說明 -->
@@ -407,7 +405,6 @@
   <div class="section-title"><span class="step-num">4</span> 電腦 OBS 設定</div>
   <div class="tip">沒有 OBS 的話，先到 <strong>https://obsproject.com</strong> 下載安裝。</div>
   <div class="tip"><strong>OBS 要填的拉流網址</strong>請貼管理員給你的完整 OBS 媒體來源輸入，不要自己手動組。</div>
-  <div class="warn"><strong>管理員本機測試例外：</strong>如果 OBS 跟中繼伺服器開在同一台電腦，請用管理員提供的 <code>127.0.0.1:8890</code> 本機網址。一般台主自己的 OBS 才用下面的外部網址。</div>
   <div class="steps" style="margin-top:16px;">
     <div class="step">
       <div class="step-header"><span class="mini-num">1</span><h3>建立三個場景</h3></div>
