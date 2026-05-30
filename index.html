@@ -206,7 +206,7 @@
   <table>
     <tr><th>要給台主的東西</th><th>用途</th></tr>
     <tr><td>直播連線資料文字檔</td><td>裡面有手機 URL、手機 Stream ID、OBS 媒體來源網址</td></tr>
-    <tr><td><code>install_noalbs.bat</code></td><td>台主第一次設定 NOALBS 時雙擊執行</td></tr>
+    <tr><td><code>install_noalbs.bat</code></td><td>台主第一次設定 NOALBS 時雙擊執行；NOALBS 資料夾會建立在這個 bat 旁邊</td></tr>
     <tr><td>這個教學網頁</td><td>台主忘記欄位怎麼填時看這頁</td></tr>
   </table>
   <div class="tip" style="margin-top:10px;"><strong>直播連線資料文字檔在哪裡？</strong>管理員端白名單工具會輸出在 <code>projects/irl-stream/config/exports/台主ID-settings.txt</code>。</div>
@@ -266,7 +266,7 @@
       <tr><td>④ OBS WebSocket 密碼</td><td>你在 OBS → 工具 → WebSocket 伺服器設定 自己設的密碼</td></tr>
       <tr><td>⑤ 場景名稱</td><td>直接按 Enter 就好（預設 IRL / lowB / BRB）</td></tr>
     </table>
-    <p style="color:#c0c4d8; margin-top:12px;">完成後會自動開啟 NOALBS 資料夾（位置在 <code>C:\Users\你的電腦帳號\NOALBS_你的TwitchID\</code>），裡面會有：</p>
+    <p style="color:#c0c4d8; margin-top:12px;">完成後會自動開啟 NOALBS 資料夾。資料夾會放在 <code>install_noalbs.bat</code> 旁邊，名稱像 <code>NOALBS_你的TwitchID</code>，裡面會有：</p>
     <table style="margin-top:8px;">
       <tr><th>檔案</th><th>用途</th></tr>
       <tr><td><code>.env</code></td><td>NOALBS 登入 Twitch 聊天室用</td></tr>
@@ -485,7 +485,7 @@
         <tr><td>④ OBS WebSocket 密碼</td><td>你在 OBS WebSocket 設定裡自己設的密碼</td></tr>
         <tr><td>⑤ 場景名稱</td><td>直接按 Enter（預設 IRL / lowB / BRB）</td></tr>
       </table>
-      <p style="margin-top:8px;">工具會自動下載 NOALBS，並幫你建立 <code>.env</code>、<code>config.json</code> 和啟動檔，位置在 <code>C:\Users\你的電腦帳號\NOALBS_你的TwitchID\</code>。</p>
+      <p style="margin-top:8px;">工具會自動下載 NOALBS，並幫你建立 <code>.env</code>、<code>config.json</code> 和啟動檔。資料夾會放在 <code>install_noalbs.bat</code> 旁邊，名稱像 <code>NOALBS_你的TwitchID</code>。</p>
     </div>
     <div class="step">
       <div class="step-header"><span class="mini-num">4</span><h3>執行 NOALBS</h3></div>
@@ -493,6 +493,8 @@
       <div class="field" style="margin-top:8px;">
         <div class="field-value">啟動_NOALBS.bat</div>
       </div>
+      <div class="tip"><strong>NOALBS 資料夾在哪？</strong>它會在 <code>install_noalbs.bat</code> 旁邊，名稱像 <code>NOALBS_你的TwitchID</code>。</div>
+      <div class="tip"><strong>要關閉 NOALBS？</strong>直接關掉 <code>noalbs.exe</code> 的黑色視窗即可；如果看不到視窗，就打開工作管理員，結束 <code>noalbs.exe</code>。</div>
       <div class="tip"><strong>連不上 OBS？</strong>先確認 OBS 有開、WebSocket 有啟用、密碼有填對。</div>
       <div class="tip"><strong>監測網址連不上？</strong>先問管理員中繼伺服器是否已開，不需要自己修 Docker 或 MediaMTX。</div>
     </div>
@@ -524,6 +526,7 @@
     <div class="step">
       <div class="step-header"><span class="mini-num">2</span><h3>執行啟動_NOALBS.bat</h3></div>
       <p>等黑色視窗出現「Connected to OBS」就代表連上你的 OBS 了。</p>
+      <p style="margin-top:8px;">直播結束後，關掉 <code>noalbs.exe</code> 黑色視窗即可停止 NOALBS。</p>
     </div>
     <div class="step">
       <div class="step-header"><span class="mini-num">3</span><h3>手機開 IRL Pro 開始推流</h3></div>
