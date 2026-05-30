@@ -258,6 +258,18 @@
       <tr><td><code>config.json</code></td><td>NOALBS 控制 OBS 和監測中繼站用</td></tr>
       <tr><td><code>啟動_NOALBS.bat</code></td><td>以後每次直播前用它啟動 NOALBS</td></tr>
     </table>
+    <p style="color:#c0c4d8; margin-top:12px;">如果你之後忘記某個資料在哪，可以照這張表找：</p>
+    <table style="margin-top:8px;">
+      <tr><th>想找的資料</th><th>在哪裡</th></tr>
+      <tr><td>手機推流 URL / Host / Port</td><td>管理員給你的直播連線資料</td></tr>
+      <tr><td>手機 Stream ID</td><td>管理員給你的直播連線資料，請整串貼上</td></tr>
+      <tr><td>OBS 媒體來源網址</td><td>管理員給你的直播連線資料，標題通常會寫「OBS 媒體來源」</td></tr>
+      <tr><td>OBS 場景名稱</td><td><code>config.json</code> 裡的 <code>switchingScenes</code>，預設是 IRL / lowB / BRB</td></tr>
+      <tr><td>NOALBS 監測中繼站的網址</td><td><code>config.json</code> 裡的 <code>statsUrl</code></td></tr>
+      <tr><td>Twitch Bot Token</td><td><code>.env</code> 裡的 <code>TWITCH_BOT_OAUTH</code>，不要傳給別人</td></tr>
+      <tr><td>OBS WebSocket 密碼</td><td><code>config.json</code> 裡的 <code>software.password</code>，不要公開</td></tr>
+    </table>
+    <div class="tip" style="margin-top:10px;"><strong>最常用的兩個：</strong>手機 Stream ID 和 OBS 媒體來源網址都看「管理員給你的直播連線資料」，不要去 <code>.env</code> 或 <code>config.json</code> 裡手動拼。</div>
     <div class="warn" style="margin-top:12px;"><strong>Token 不要傳給別人。</strong>Token 只需要貼進設定工具。手機和 OBS 的欄位看下面章節填。</div>
   </div>
 </div>
